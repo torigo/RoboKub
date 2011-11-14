@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#       robokub.py
+#       robot.py
 #
 #       Copyright 2011 Alexandr Posazhennikov <elfjse@gmail.com>
 #
@@ -18,15 +18,46 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
 
 import pygame
 
+class radar():
+    pass
 
-def main():
+class robot():
+    '''
+    Основной интерфейс робота
+    '''
+    v_range = 0
+    hp = 3 # Hit Point
+    position = [0,0]
+    color = [255,150,255]
 
-    return 0
+    def __init__(self, field):
+        self.field = field
+
+    def set_position(self,x,y):
+        print self.field
+        self.position = [x,y]
+        pygame.draw.circle(self.field, self.color, self.position, 6)
+
+    def move(self, coord):
+        return 0
+
+    def turn(self):
+        '''
+        Метод описывает ход робота
+        '''
+        return 0
+
+    def shoot(self):
+        '''
+        Метод описывает стрельбу
+        '''
+        return 0
+
+
 
 if __name__ == '__main__':
-    main()
+    pass #main()
 
