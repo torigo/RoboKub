@@ -20,6 +20,7 @@
 #
 
 import pygame
+from random import choice
 
 class radar():
     pass
@@ -37,17 +38,39 @@ class robot():
         self.field = field
 
     def set_position(self,x,y):
-        print self.field
+        #~ print self.field
         self.position = [x,y]
         pygame.draw.circle(self.field, self.color, self.position, 6)
 
     def move(self, coord):
         return 0
 
+    def rmove(self):
+        pX, pY = self.position
+
+        def gran(p):
+            s = 10
+            t = [-s,s]
+            bmin = 5
+            bmax = 495
+            if p > bmin and p < bmax:
+                p += choice(t)
+            elif p <= bmin:
+                p += s
+            elif p >= bmax:
+                p += -s
+
+            return p
+
+        x = gran(pX)
+        y = gran(pY)
+        self.set_position(x,y)
+
     def turn(self):
         '''
         Метод описывает ход робота
         '''
+        self.rmove()
         return 0
 
     def shoot(self):

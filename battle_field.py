@@ -18,15 +18,16 @@
 #       You should have received a copy of the GNU General Public License
 #       along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+
 import pygame
 
 class battle_field():
-    field_size = [500,500]
-    field_name = 'Поле брани'
-    field = 0
-    robots = []
 
     def __init__(self):
+        self.set_size(500,500)
+        self.set_name('Поле брани')
+        self.robots = []
+
         pygame.init()
         self.field = pygame.display.set_mode(self.field_size)
         pygame.display.set_caption(self.field_name)
@@ -44,7 +45,7 @@ class battle_field():
         Метод принимает ссылку на объект robot
         '''
         trobo = robot(self.field)
-        print self.robots
+        #~ print self.robots
         if not self.robots:
             print 'ok'
             trobo.set_position(6,6) # стартовая координата робота, заменить на функцию
@@ -59,12 +60,13 @@ class battle_field():
         '''
         Запускает битву между роботами (бесконечный цикл, пока не останется один)
         '''
+
         alive_robots = 2
         while alive_robots > 1:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    alive_robots = 0
-
+            #~ for event in pygame.event.get():
+                #~ if event.type == pygame.QUIT:
+                    #~ alive_robots = 0
+            self.field.fill([0,0,0])
             alive_robots = len(self.robots)
 
             for i in range(alive_robots):
@@ -72,13 +74,14 @@ class battle_field():
                     del(self.robots[i])
                 else:
                     self.robots[i].turn()
-
             pygame.display.flip()
+
 
 def main():
     from robot import robot
 
     x = battle_field()
+    x.add_robot(robot)
     x.add_robot(robot)
     x.add_robot(robot)
     x.begin_battle()
